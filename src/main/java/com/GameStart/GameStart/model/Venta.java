@@ -1,5 +1,5 @@
 package com.GameStart.GameStart.model;
 
-public class Soporte {
-    
+public class Venta {
+
 }
