@@ -10,24 +10,4 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table (name="cliente")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_cliente;
 
-    @Column(nullable=true)
-    private String nombre_cliente;
-
-    @Column(nullable=true)
-    private String correo_cliente;
-
-    @Column(nullable=false)
-    private String telefono_cliente;
-
-    sadsada
-}
