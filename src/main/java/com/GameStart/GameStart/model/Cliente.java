@@ -66,26 +66,26 @@ public class Cliente {
             return false;
          } else {
            label76:{
-               Object this$correo_cliente = this.getCorreo_cliente();
-               Object other$correo_cliente = other.getCorreo_cliente();
-               if (this$correo_cliente == null) {
-                  if (other$correo_cliente == null) {
+               Object this$nombre_cliente = this.getNombre_cliente();
+               Object other$nombre_cliente = other.getNombre_cliente();
+               if (this$nombre_cliente == null) {
+                  if (other$nombre_cliente == null) {
                      break label76;
                   }
-               } else if (this$correo_cliente.equals(other$correo_cliente)) {
+               } else if (this$nombre_cliente.equals(other$nombre_cliente)) {
                   break label76;
                }
 
                return false;
             }
 
-            Object this$rut = this.getCorreo_cliente();
-            Object other$rut = other.getCorreo_cliente();
-            if (this$rut == null) {
-               if (other$rut != null) {
+            Object this$correo_cliente = this.getCorreo_cliente();
+            Object other$correo_cliente = other.getCorreo_cliente();
+            if (this$correo_cliente == null) {
+               if (other$correo_cliente != null) {
                   return false;
                }
-            } else if (!this$rut.equals(other$rut)) {
+            } else if (!this$correo_cliente.equals(other$correo_cliente)) {
                return false;
             }
 

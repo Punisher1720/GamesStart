@@ -87,36 +87,36 @@ public class Usuario {
             return false;
          } else {
             label54:{
-               Object this$correo_usuario = this.getCorreo_usuario();
-               Object other$correo_usuario = other.getCorreo_usuario();
-               if (this$correo_usuario == null) {
-                  if (other$correo_usuario == null) {
+               Object this$id_rol = this.getId_rol();
+               Object other$id_rol = other.getId_rol();
+               if (this$id_rol == null) {
+                  if (other$id_rol == null) {
                      break label54;
                   }
-               } else if (this$correo_usuario.equals(other$correo_usuario)) {
+               } else if (this$id_rol.equals(other$id_rol)) {
                   break label54;
                }
 
                return false;
             }
 
-            Object this$contraseña_usuario = this.getContraseña_usuario();
-            Object other$contraseña_usuario = other.getContraseña_usuario();
-            if (this$contraseña_usuario == null) {
-               if (other$contraseña_usuario != null) {
+            Object this$id_cliente = this.getId_cliente();
+            Object other$id_cliente = other.getId_cliente();
+            if (this$id_cliente == null) {
+               if (other$id_cliente != null) {
                   return false;
                }
-            } else if (!this$contraseña_usuario.equals(other$contraseña_usuario)) {
+            } else if (!this$id_cliente.equals(other$id_cliente)) {
                return false;
             }
 
-            Object this$correo_usuario = this.getCorreo_usuario();
-            Object other$correo_usuario = other.getCorreo_usuario();
-            if (this$correo_usuario == null) {
-               if (other$correo_usuario != null) {
+            Object this$id_vendedor = this.getId_vendedor();
+            Object other$id_vendedor = other.getId_vendedor();
+            if (this$id_vendedor == null) {
+               if (other$id_vendedor != null) {
                   return false;
                }
-            } else if (!this$correo_usuario.equals(other$correo_usuario)) {
+            } else if (!this$id_vendedor.equals(other$id_vendedor)) {
                return false;
             }
 
@@ -126,16 +126,22 @@ public class Usuario {
    }
 
    @Generated
-   public int hashCode() {
-      int result = 1;
-      result = result * 59 + this.getId_usuario();
-      result = result * 59 + this.getId_rol();
-      Object $correo_usuario = this.getCorreo_usuario();
-      result = result * 59 + ($correo_usuario == null ? 43 : $correo_usuario.hashCode());
-      Object $contraseña_usuario = this.getContraseña_usuario();
-      result = result * 59 + ($contraseña_usuario == null ? 43 : $contraseña_usuario.hashCode());
-      return result;
+   protected boolean canEqual(final Object other) {
+      return other instanceof Usuario;
    }
+
+    @Generated
+    public int hashCode() {
+        int result = 1;
+        result = result * 59 + this.getId_usuario();
+        result = result * 59 + this.getId_rol();
+        Object $id_cliente = this.getId_cliente();
+        result = result * 59 + ($id_cliente == null ? 43 : $id_cliente.hashCode());
+        Object $id_vendedor = this.getId_vendedor();
+        result = result * 59 + ($id_vendedor == null ? 43 : $id_vendedor.hashCode());
+        return result;
+    }
+   
 
    @Generated
    public String toString() {
@@ -144,12 +150,12 @@ public class Usuario {
     }
 
     @Generated
-   public Usuario(final int id, final String correo_usuario, final String contraseña_usuario, final int id_rol) {
-      this.id_usuario = id;
-      this.correo_usuario = correo_usuario;
-      this.contraseña_usuario = contraseña_usuario;
-      this.id_rol = id_rol;
-   }
+    public Usuario(final int id_usuario, final String correo_usuario, final String contraseña_usuario, final int id_rol) {
+          this.id_usuario = id_usuario;
+          this.correo_usuario = correo_usuario;
+          this.contraseña_usuario = contraseña_usuario;
+          this.id_rol = id_rol;
+     }
 
    @Generated
    public Usuario() {
