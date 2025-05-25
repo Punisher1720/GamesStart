@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,30 +46,5 @@ public class ClienteController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Cliente> actualizar(@PathVariable Integer id, @RequestBody Cliente cliente) {
-        try {
-            Cliente cli = clienteService.findById(id);
-            cli.setId_cliente(id);
-            cli.setNombre_cliente(cliente.getNombre_cliente());
-            cli.setCorreo_cliente(cliente.getCorreo_cliente());
-            cli.setTelefono_cliente(cliente.getTelefono_cliente());
-
-            clienteService.save(cli);
-            return ResponseEntity.ok(cliente);
-        } catch ( Exception e ) {
-            return  ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Long id) {
-        try {
-            clienteService.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch ( Exception e ) {
-            return  ResponseEntity.notFound().build();
-        }
-    }
 
 }
