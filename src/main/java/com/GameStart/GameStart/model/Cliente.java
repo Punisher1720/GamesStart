@@ -50,7 +50,7 @@ public class Cliente {
     
     }
 
-       @Generated
+    @Generated
    public boolean equals(final Object o) {
       if (o == this) {
          return true;
@@ -66,13 +66,13 @@ public class Cliente {
             return false;
          } else {
             {
-               Object this$nombreCompleto = this.getCorreo_cliente();
-               Object other$nombreCompleto = other.getCorreo_cliente();
-               if (this$nombreCompleto == null) {
-                  if (other$nombreCompleto == null) {
+               Object this$correo_cliente = this.getCorreo_cliente();
+               Object other$correo_cliente = other.getCorreo_cliente();
+               if (this$correo_cliente == null) {
+                  if (other$correo_cliente == null) {
                      break;
                   }
-               } else if (this$nombreCompleto.equals(other$nombreCompleto)) {
+               } else if (this$correo_cliente.equals(other$correo_cliente)) {
                   break;
                }
 
