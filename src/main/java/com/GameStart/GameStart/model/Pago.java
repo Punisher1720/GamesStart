@@ -1,6 +1,12 @@
 package com.GameStart.GameStart.model;
 
-import lombok.Generated;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Pago {
 
