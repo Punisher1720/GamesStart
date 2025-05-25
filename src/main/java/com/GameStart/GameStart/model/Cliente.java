@@ -65,15 +65,15 @@ public class Cliente {
          } else if (this.getId_cliente() != other.getId_cliente()) {
             return false;
          } else {
-            {
+           label76:{
                Object this$correo_cliente = this.getCorreo_cliente();
                Object other$correo_cliente = other.getCorreo_cliente();
                if (this$correo_cliente == null) {
                   if (other$correo_cliente == null) {
-                     break;
+                     break label76;
                   }
                } else if (this$correo_cliente.equals(other$correo_cliente)) {
-                  break;
+                  break label76;
                }
 
                return false;
@@ -89,15 +89,15 @@ public class Cliente {
                return false;
             }
 
-            {
+            label62:{
                Object this$telefono = this.getTelefono();
                Object other$telefono = other.getTelefono();
                if (this$telefono == null) {
                   if (other$telefono == null) {
-                     break;
+                     break label62;
                   }
                } else if (this$telefono.equals(other$telefono)) {
-                  break;
+                  break label62;
                }
 
                return false;

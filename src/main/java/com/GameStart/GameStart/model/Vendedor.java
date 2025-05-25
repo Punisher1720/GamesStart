@@ -4,6 +4,8 @@ import lombok.Generated;
 
 public class Vendedor {
 
+    
+
     private String id_vendedor;
     private String nombre_vendedor;
     private String correo_vendedor;
@@ -49,7 +51,8 @@ public class Vendedor {
         this.telefono_vendedor = telefono_vendedor;
     }
 
-     @Generated
+     
+    @Generated
    public boolean equals(final Object o) {
       if (o == this) {
          return true;
@@ -78,30 +81,37 @@ public class Vendedor {
                return false;
             }
 
-            Object this$correo_vendedor = this.getCorreo_vendedor();
-            Object other$correo_vendedor = other.getCorreo_vendedor();
-            if (this$correo_vendedor == null) {
-               if (other$correo_vendedor != null) {
-                  return false;
-               }
-            } else if (!this$correo_vendedor.equals(other$correo_vendedor)) {
-               return false;
-            }
+                Object this$correo_vendedor = this.getCorreo_vendedor();
+                Object other$correo_vendedor = other.getCorreo_vendedor();
+                if (this$correo_vendedor == null) {
+                if (other$correo_vendedor != null) {
+                      return false;
+                }
+                    } else if (!this$correo_vendedor.equals(other$correo_vendedor)) {
+                    return false;
+                }
 
-            {
-               Object this$telefono_vendedor = this.getTelefono_vendedor();
-               Object other$telefono = other.getTelefono_vendedor();
-               if (this$telefono_vendedor == null) {
-                  if (other$telefono == null) {
-                     break;
-                  }
-               return false;
+                    {
+                Object this$telefono_vendedor = this.getTelefono_vendedor();
+                Object other$telefono = other.getTelefono_vendedor();
+                if (this$telefono_vendedor == null) {
+                    if (other$telefono == null) {
+                        break;
+                        }
+                        }
+                    return false;
+                }
             }
-         }
-      }
-   }
-
+        }  
     
-}
+    } 
+}  
+
+
+         
+      
+   
+
+        
 
 
