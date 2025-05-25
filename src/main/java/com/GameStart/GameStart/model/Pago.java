@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 
 public class Pago {
 
+private int id_pago;
+private String metodo_pago;
+private String estado_pago;
+
 }
