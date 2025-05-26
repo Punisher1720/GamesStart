@@ -1,4 +1,4 @@
-package com.GameStart.GameStart.Repository;
+package com.GameStart.GameStart.repository;
 
 import com.GameStart.GameStart.model.Descuento;
 import org.springframework.data.jpa.repository.JpaRepository;
