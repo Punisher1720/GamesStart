@@ -31,5 +31,7 @@ public class Soporte {
 
     @ManyToOne
     private Cliente cliente;
-
+    
+    @ManyToOne
+    private Vendedor vendedor;
 }
