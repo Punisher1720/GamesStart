@@ -1,5 +1,5 @@
 package com.GameStart.GameStart.controller;
 
-public class SoporteController {
-  
+public class JuegoController {
+
 }
