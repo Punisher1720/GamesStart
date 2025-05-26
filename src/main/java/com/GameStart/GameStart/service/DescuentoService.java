@@ -1,7 +1,7 @@
 package com.GameStart.GameStart.service;
 
-import com.GameStart.GameStart.repository.Descuento;
-import com.GameStart.GameStart.repository.DescuentoRepository;
+import com.GameStart.GameStart.model.Descuento;
+import com.GameStart.GameStart.Repository.DescuentoRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,17 @@ public class DescuentoService {
         return this.descuentoRepository.findAll();
     }
 
-    public Descuento findById(Long id) {
-        return this.descuentoRepository.findById(id).orElse(null);
+    public Descuento findById(Long cod_descuento) {
+        return (Descuento)this.descuentoRepository.findById(cod_descuento).get();
     }
 
     public Descuento save(Descuento descuento) {
-        return this.descuentoRepository.save(descuento);
+        return (Descuento)this.descuentoRepository.save(descuento);
     }
 
-    public void deleteById(Long id) {
-        this.descuentoRepository.deleteById(id);
+    public void deleteById(Long cod_descuento) {
+        this.descuentoRepository.deleteById(cod_descuento);
     }
+
     
-
 }
