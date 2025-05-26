@@ -29,4 +29,23 @@ public class JuegoController {
                 .filter(j -> (precio == null || j.getPrecio_juego().equals(precio)))
                 .toList();
     }
+
+    // Agregar un juego
+    @PostMapping
+    public Juego agregarJuego(@RequestBody Juego juego) {
+        return juegoService.save(juego);
+    }
+
+    // Actualizar un juego
+    @PutMapping("/{id}")
+    public Juego actualizarJuego(@PathVariable("id") Integer id, @RequestBody Juego juego) {
+        juego.setCod_juego(id);
+        return juegoService.save(juego);
+    }
+
+    // Eliminar un juego
+    @DeleteMapping("/{id}")
+    public void eliminarJuego(@PathVariable("id") Integer id) {
+        juegoService.deleteById(id.longValue());
+    }
 }
