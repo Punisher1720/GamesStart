@@ -55,7 +55,7 @@ public class ClienteController {
             cli.setId_cliente(id);
             cli.setNombre_cliente(cliente.getNombre_cliente());
             cli.setCorreo_cliente(cliente.getCorreo_cliente());
-            cli.setTelefono_cliente(cliente.getTelefono_cliente());
+            cli.setTelefono(cliente.getTelefono());
 
             clienteService.save(cli);
             return ResponseEntity.ok(cliente);
