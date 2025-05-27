@@ -27,5 +27,8 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+    public Cliente findByCorreoCliente(String correoCliente){
+        return clienteRepository.findByCorreoCliente(correoCliente);
+    }
 
 }

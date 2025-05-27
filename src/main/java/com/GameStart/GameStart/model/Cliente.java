@@ -24,7 +24,7 @@ public class Cliente {
     private String nombre_cliente;
 
     @Column(nullable=true)
-    private String correo_cliente;
+    private String correoCliente;
 
     @Column(nullable=false)
     private String telefono_cliente;

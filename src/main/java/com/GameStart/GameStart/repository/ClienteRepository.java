@@ -7,4 +7,5 @@ import com.GameStart.GameStart.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+    Cliente findByCorreoCliente(String correoCliente);
 }
