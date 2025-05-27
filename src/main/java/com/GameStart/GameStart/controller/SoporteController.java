@@ -17,7 +17,7 @@ import com.GameStart.GameStart.service.SoporteService;
 @RestController
 @RequestMapping("/api/v1/tickets")
 public class SoporteController {
-@Autowired
+    @Autowired
     private SoporteService soporteService;
 
     @GetMapping

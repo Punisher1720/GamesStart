@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.GameStart.GameStart.model.Vendedor;
-
 import com.GameStart.GameStart.service.VendedorService;
 
 @RestController
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/api/v1/vendedores")
 public class VendedorController {
     @Autowired
     private VendedorService vendedorService;
