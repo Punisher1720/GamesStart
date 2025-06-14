@@ -1,41 +1,57 @@
 package com.GameStart.GameStart.controller;
 
+import java.util.List;
+
 import com.GameStart.GameStart.model.Descuento;
 import com.GameStart.GameStart.service.DescuentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("GameStart/v1/descuento")
+@RequestMapping("api/v1/descuento")
 public class DescuentoController {
 
     @Autowired
     private DescuentoService descuentoService;
 
-    // Listar todos los descuentos
     @GetMapping
     public List<Descuento> listarDescuentos() {
         return descuentoService.findAll();
     }
 
-    // Agregar un descuento
-    @PostMapping
-    public Descuento agregarDescuento(@RequestBody Descuento descuento) {
-        return descuentoService.save(descuento);
+    @GetMapping("/{id}")
+    public ResponseEntity<Descuento> obtenerDescuentoPorId(@PathVariable long id) {
+        return descuentoService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // Actualizar un descuento
+    @PostMapping("/crear")
+    public ResponseEntity<Descuento> crearDescuento(@RequestBody Descuento descuento) {
+        Descuento nuevoDescuento = descuentoService.guardar(descuento);
+        return ResponseEntity.ok(nuevoDescuento);
+    }
+
     @PutMapping("/{id}")
-    public Descuento actualizarDescuento(@PathVariable("id") Long id, @RequestBody Descuento descuento) {
-        descuento.setCod_descuento(id.intValue());
-        return descuentoService.save(descuento);
+    public ResponseEntity<Descuento> actualizarDescuento(@PathVariable long id, @RequestBody Descuento descuento) {
+        return descuentoService.buscarPorId(id, descuento)
+                .map(existe -> {
+                    descuento.setId(id);
+                    Descuento descuentoActualizado = descuentoService.guardar(descuento);
+                    return ResponseEntity.ok(descuentoActualizado);
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // Eliminar un descuento
     @DeleteMapping("/{id}")
-    public void eliminarDescuento(@PathVariable("id") Long id) {
-        descuentoService.deleteById(id);
+    public ResponseEntity<Void> eliminarDescuento(@PathVariable long id) {
+        if (descuentoService.buscarPorId(id).isPresent()) {
+            descuentoService.eliminar(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+    
 }

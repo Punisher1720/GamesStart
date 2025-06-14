@@ -4,48 +4,62 @@ package com.GameStart.GameStart.controller;
 import com.GameStart.GameStart.model.Juego;
 import com.GameStart.GameStart.service.JuegoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("GameStart/v1/juego")
+@RequestMapping("api/juego/v1")
 public class JuegoController {
 
     @Autowired
     private JuegoService juegoService;
 
-    //Filtro por nombre, género o precio
-    @GetMapping("/filtrar")
-    public List<Juego> filtrarJuegos(
-            @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String genero,
-            @RequestParam(required = false) Integer precio
-    ) {
-        List<Juego> juegos = juegoService.findAll();
-        return juegos.stream()
-                .filter(j -> (nombre == null || j.getNombre_juego().equalsIgnoreCase(nombre)))
-                .filter(j -> (genero == null || j.getGenero_juego().equalsIgnoreCase(genero)))
-                .filter(j -> (precio == null || j.getPrecio_juego().equals(precio)))
-                .toList();
+    @GetMapping
+    public List<Juego> listarjuegos() {
+        return juegoService.findAll();
     }
 
-    // Agregar un juego
-    @PostMapping
-    public Juego agregarJuego(@RequestBody Juego juego) {
-        return juegoService.save(juego);
+    @GetMapping("/{id}")
+    public ResponseEntity<Juego> obtenerJuegoPorId(@PathVariable long id) {
+        return juegoService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // Actualizar un juego
+    @PostMapping("/crear")
+    public ResponseEntity<Juego> crearJuego(@RequestBody Juego juego) {
+        Juego nuevoJuego = juegoService.guardar(juego);
+        return ResponseEntity.ok(nuevoJuego);
+    }    
+
     @PutMapping("/{id}")
-    public Juego actualizarJuego(@PathVariable("id") Integer id, @RequestBody Juego juego) {
-        juego.setCod_juego(id);
-        return juegoService.save(juego);
+    public ResponseEntity<Juego> actualizarJuego(@PathVariable long id, @RequestBody Juego juego) {
+        return juegoService.buscarPorId(id, juego)
+                .map(existe ->{
+                    juego.setId(id);
+                    Juego juegoActualizado = juegoService.guardar(juego);
+                    return ResponseEntity.ok(juego);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarJuego(@PathVariable long id) {
+        if (juegoService.buscarPorId(id).isPresent()) {
+            juegoService.eliminar(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // Eliminar un juego
-    @DeleteMapping("/{id}")
-    public void eliminarJuego(@PathVariable("id") Integer id) {
-        juegoService.deleteById(id.longValue());
+    @GetMapping("/buscar/{cod_juego}")
+    public ResponseEntity<Juego> buscarJuegoPorCodigo(@PathVariable Integer cod_juego) {
+        return juegoService.buscarPorCodigo(cod_juego)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
