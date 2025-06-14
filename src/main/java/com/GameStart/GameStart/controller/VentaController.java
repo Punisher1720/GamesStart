@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("api/venta/v1/")
@@ -29,41 +31,57 @@ public class VentaController {
     private VentaService ventaService;
 
     @GetMapping
-    public List<Venta> listarVentas() {
-        return ventaService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Venta> obtenerVentaPorId(@PathVariable long id) {
-        return ventaService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping("/crear")
-    public ResponseEntity<Venta> crearVenta(@RequestBody Venta venta) {
-        Venta nuevaVenta = ventaService.guardar(venta);
-        return ResponseEntity.ok(nuevaVenta);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Venta> actualizarVenta(@PathVariable long id, @RequestBody Venta venta) {
-        return ventaService.buscarPorId(id, venta)
-                .map(existe -> {
-                    venta.setId(id);
-                    Venta ventaActualizada = ventaService.guardar(venta);
-                    return ResponseEntity.ok(ventaActualizada);
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarVenta(@PathVariable long id) {
-        if (ventaService.buscarPorId(id).isPresent()) {
-            ventaService.eliminar(id);
+    public ResponseEntity<List<Venta>> listarVentas() {
+        List<Venta> ventas = ventaService.findAll();
+        if (ventas.isEmpty()) {
             return ResponseEntity.noContent().build();
-        } else {
+        }
+        return ResponseEntity.ok(ventas);
+    }
+
+    @GetMapping("/buscarporid/{id}")
+    public ResponseEntity<Venta> obtenerVentaPorId(@PathVariable long id) {
+        Optional<Venta> venta = ventaService.findById(id);
+        return venta.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+    }
+
+    
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> eliminarVenta(@PathVariable long id) {
+        Optional<Venta> venta = ventaService.findById(id);
+        if (venta.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+        ventaService.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/GuardarVentas")
+    public ResponseEntity<void>guardar(@RequestBody Venta nuevaventa) {
+        if (nuevaventa == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        ventaService.guardar(nuevaventa);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/actualizar/{id}")
+    public ResponseEntity<Venta> actualizarVenta(@PathVariable long id, @RequestBody Venta venta) {
+        Optional<Venta> ventaExistente = ventaService.findById(id);
+        if (ventaExistente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        ventaService.actualizar(id, venta);
+        return ResponseEntity.ok(venta);
+    }
+
+    @GetMapping
+    public String healt(){
+        return "API de Ventas en funcionamiento";
+    }
+                
+
+
+    
 }
