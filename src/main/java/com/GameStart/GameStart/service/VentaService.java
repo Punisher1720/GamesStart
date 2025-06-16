@@ -9,10 +9,7 @@ import com.GameStart.GameStart.Repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
-
 @Service
-@Transactional
 public class VentaService {
 
     @Autowired
@@ -22,7 +19,7 @@ public class VentaService {
         return ventaRepository.findAll();
     }
 
-    public void eliminarVenta(Long id) {
+    public void eliminarVenta(Integer id) {
         ventaRepository.deleteById(id);
     }
     
@@ -30,24 +27,9 @@ public class VentaService {
         ventaRepository.save(venta);
     }
 
-    public Optional<Venta> buscarVentaPorId(Long id) {
+    public Optional<Venta> buscarVentaPorId(Integer id) {
         return ventaRepository.findById(id);
     }
-
-    public void actualizarVenta(Integer id, Venta datosactualizados) {
-        Optional<Venta> ventaExistente = ventaRepository.findById(venta.getId());
-        if (ventaExistente.isPresent()) {
-            Venta v = ventaExistente.get();
-            v.setCodVenta(datosactualizados.getCodVenta());
-            v.setFecha(datosactualizados.getFecha());
-            v.setPrecioTotal(datosactualizados.getPrecioTotal());
-            v.setCliente(datosactualizados.getCliente());
-            v.setJuego(datosactualizados.getJuego());
-            ventaRepository.save(v);
-        }
-    }
-
-
 
 
 }

@@ -35,9 +35,9 @@ public class DescuentoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Descuento> actualizarDescuento(@PathVariable long id, @RequestBody Descuento descuento) {
-        return descuentoService.buscarPorId(id, descuento)
+        return descuentoService.buscarPorId(id)
                 .map(existe -> {
-                    descuento.setId(id);
+                    descuento.setId((int) id);
                     Descuento descuentoActualizado = descuentoService.guardar(descuento);
                     return ResponseEntity.ok(descuentoActualizado);
                 })
