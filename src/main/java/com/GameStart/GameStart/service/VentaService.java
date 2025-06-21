@@ -31,6 +31,11 @@ public class VentaService {
         return ventaRepository.findById(id);
     }
 
+    public void deleteById(Integer id) {
+        ventaRepository.deleteById(id);
+    }
+    
+
 
 }
 

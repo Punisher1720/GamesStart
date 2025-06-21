@@ -58,7 +58,7 @@ public class VentaController {
     }
 
     @PostMapping("/GuardarVentas")
-    public ResponseEntity<void>guardar(@RequestBody Venta nuevaventa) {
+    public ResponseEntity<void>save(@RequestBody Venta nuevaventa) {
         if (nuevaventa == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -80,6 +80,8 @@ public class VentaController {
     public String healt(){
         return "API de Ventas en funcionamiento";
     }
+
+    
                 
 
 
