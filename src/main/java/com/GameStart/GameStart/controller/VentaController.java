@@ -30,16 +30,16 @@ public class VentaController {
     @Autowired
     private VentaService ventaService;
 
-    @GetMapping
+    @GetMapping("ListarVentas")
     public ResponseEntity<List<Venta>> listarVentas() {
-        List<Venta> ventas = ventaService.findAll();
+        List<Venta> ventas = ventaService.listarVentas();
         if (ventas.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(ventas);
     }
 
-    @GetMapping("/buscarporid/{id}")
+    @GetMapping("/buscarPorId/{id}")
     public ResponseEntity<Venta> obtenerVentaPorId(@PathVariable long id) {
         Optional<Venta> venta = ventaService.findById(id);
         return venta.map(ResponseEntity::ok)
@@ -47,7 +47,7 @@ public class VentaController {
     }
 
     
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/eliminarPorId/{id}")
     public ResponseEntity<Void> eliminarVenta(@PathVariable long id) {
         Optional<Venta> venta = ventaService.findById(id);
         if (venta.isEmpty()) {
@@ -66,14 +66,14 @@ public class VentaController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/actualizar/{id}")
-    public ResponseEntity<Venta> actualizarVenta(@PathVariable long id, @RequestBody Venta venta) {
+    @PatchMapping("/actualizarVenta/{id}")
+    public ResponseEntity<Venta> actualizarVenta(@PathVariable long id, @RequestBody Venta nuevaventa) {
         Optional<Venta> ventaExistente = ventaService.findById(id);
         if (ventaExistente.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        ventaService.actualizar(id, venta);
-        return ResponseEntity.ok(venta);
+        ventaService.actualizar(id, nuevaventa);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping 
