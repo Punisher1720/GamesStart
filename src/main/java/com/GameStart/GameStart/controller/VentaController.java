@@ -53,16 +53,16 @@ public class VentaController {
         if (venta.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        ventaService.eliminar(id);
+        ventaService.deleteById((int) id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/GuardarVentas")
-    public ResponseEntity<void>save(@RequestBody Venta nuevaventa) {
+    public ResponseEntity<Void> save(@RequestBody Venta nuevaventa) {
         if (nuevaventa == null) {
             return ResponseEntity.badRequest().build();
         }
-        ventaService.guardar(nuevaventa);
+        ventaService.guardarVenta(nuevaventa);
         return ResponseEntity.ok().build();
     }
 
@@ -76,14 +76,10 @@ public class VentaController {
         return ResponseEntity.ok(venta);
     }
 
-    @GetMapping
-    public String healt(){
-        return "API de Ventas en funcionamiento";
+    @GetMapping 
+    public String healt() {
+        return "Service is running";
     }
-
-    
-                
-
-
+   
     
 }

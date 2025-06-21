@@ -34,8 +34,8 @@ public class VentaService {
     public void deleteById(Integer id) {
         ventaRepository.deleteById(id);
     }
-    
 
+    
 
 }
 
