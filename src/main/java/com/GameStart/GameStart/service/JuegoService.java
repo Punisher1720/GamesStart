@@ -43,8 +43,6 @@ public class JuegoService {
             juegoActualizado.setGenero_juego(juego.getGenero_juego());
             juegoActualizado.setStock_juego(juego.getStock_juego());
             juegoActualizado.setPrecio_juego(juego.getPrecio_juego());
-            juegoActualizado.setDescuento_id_descuento(juego.getDescuento_id_descuento());
-            juegoActualizado.setVenta_id_venta(juego.getVenta_id_venta());
             juegoRepository.save(juegoActualizado);
         }
     }

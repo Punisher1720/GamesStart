@@ -7,12 +7,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
 
 @Entity
-@Table (name = "juego")
+@Table (name = "Juego")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,11 +38,11 @@ public class Juego {
    @Column(nullable = false, length= 100)
    private Integer precio_juego;
 
-   @Column(nullable = false, length=30)
-   private Integer descuento_id_descuento;
+   @ManyToOne
+   private Descuento descuento;
 
-   @Column(nullable = false, length=30)
-   private Integer venta_id_venta;
+   @ManyToOne
+   private Venta venta;
 
 
    

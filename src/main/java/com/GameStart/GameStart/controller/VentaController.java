@@ -66,16 +66,6 @@ public class VentaController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/actualizarVenta/{id}")
-    public ResponseEntity<Venta> actualizarVenta(@PathVariable long id, @RequestBody Venta nuevaventa) {
-        Optional<Venta> ventaExistente = ventaService.findById(id);
-        if (ventaExistente.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        ventaService.actualizar(id, nuevaventa);
-        return ResponseEntity.ok().build();
-    }
-
     @GetMapping 
     public String healt() {
         return "Service is running";
