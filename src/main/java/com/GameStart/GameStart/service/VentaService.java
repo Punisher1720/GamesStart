@@ -27,6 +27,7 @@ public class VentaService {
         ventaRepository.save(venta);
     }
 
+    
     public Optional<Venta> buscarVentaPorId(Integer id) {
         return ventaRepository.findById(id);
     }
@@ -35,11 +36,6 @@ public class VentaService {
         ventaRepository.deleteById(id);
     }
 
-    
-
-    
-
-    
 
 }
 
